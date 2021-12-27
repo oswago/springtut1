@@ -3,9 +3,12 @@ package com.sprinbootutorila.springtut1.controller;
 import com.sprinbootutorila.springtut1.entity.Department;
 import com.sprinbootutorila.springtut1.service.DepartmentService;
 import com.sprinbootutorila.springtut1.service.DepartmentServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.xml.ws.soap.Addressing;
 import java.util.List;
 
@@ -13,15 +16,18 @@ import java.util.List;
 public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
+    private final Logger LOGGER= LoggerFactory.getLogger(DepartmentController.class);
 
     @PostMapping("/department")
-     public Department saveDepartment(@RequestBody Department department){
+     public Department saveDepartment(@Valid @RequestBody Department department){
        // DepartmentService service=new DepartmentServiceImpl();
+        LOGGER.info("Inside saveDepartment of DepartmentController");
         return departmentService.saveDepartment(department);
       }
       @GetMapping("/departments")
       public List<Department> fetchDepartmentList(){
-       return departmentService.fetchDepartmentList();
+          LOGGER.info("Inside fetchDepartment List of DepartmentController");
+        return departmentService.fetchDepartmentList();
       }
       @GetMapping("/departments/{id}")
     public Department fetchDepartmentById(@PathVariable("id") long departmentId){
