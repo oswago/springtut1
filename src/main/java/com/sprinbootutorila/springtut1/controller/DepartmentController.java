@@ -1,6 +1,7 @@
 package com.sprinbootutorila.springtut1.controller;
 
 import com.sprinbootutorila.springtut1.entity.Department;
+import com.sprinbootutorila.springtut1.error.DepartmentNotFoundException;
 import com.sprinbootutorila.springtut1.service.DepartmentService;
 import com.sprinbootutorila.springtut1.service.DepartmentServiceImpl;
 import org.slf4j.Logger;
@@ -30,7 +31,7 @@ public class DepartmentController {
         return departmentService.fetchDepartmentList();
       }
       @GetMapping("/departments/{id}")
-    public Department fetchDepartmentById(@PathVariable("id") long departmentId){
+    public Department fetchDepartmentById(@PathVariable("id") long departmentId) throws DepartmentNotFoundException {
        return departmentService.fetchDepartmentById(departmentId);
     }
      @DeleteMapping("/departments/{id}")
