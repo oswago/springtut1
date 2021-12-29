@@ -1,0 +1,50 @@
+server:
+    port: 8082
+
+spring:
+    profiles:
+        active: dev
+---
+spring:
+    profiles: dev
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: root123
+        url: jdbc:mysql://localhost:3306/dcbapp
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+
+welcome:
+     message: Welcome to Daily Code buffer today Only!!
+---
+spring:
+    profiles: qa
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: root123
+        url: jdbc:mysql://localhost:3306/dcbapp-qa
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+welcome:
+    message: Welcome to Daily Code buffer today Only!!
+---
+spring:
+    profiles: prod
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        password: root123
+        url: jdbc:mysql://localhost:3306/dcbapp-prod
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+
+welcome:
+    message: Welcome to Daily Code buffer today Only!!
